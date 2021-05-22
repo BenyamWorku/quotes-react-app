@@ -1,6 +1,6 @@
 /* eslint-disable indent*/
 import React, { useState, useEffect } from "react";
-
+import Search from "./Search.js";
 import Quotetext from "./Quotetext.js";
 import Quoteauthor from "./Quoteauthor.js";
 import "./App.css";
@@ -8,6 +8,12 @@ import Button from "./Button";
 function App() {
   const [quote, setQuote] = useState("placeholder quote");
   const [author, setAuthor] = useState("Anonymous");
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState("");
+  const search = (searchVal, event) => {
+    setSearchValue(searchVal);
+    event.preventDefault();
+  };
   const getQuote = () => {
     fetch(`https://benyam-quote-server.glitch.me/quotes/random`)
       .then((res) => res.json())
@@ -17,7 +23,17 @@ function App() {
         setAuthor(data.author);
       });
   };
-
+  const getSearchResults = () => {
+    fetch(
+      `https://benyam-quote-server.glitch.me/quotes/search/?term=${searchValue}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSearchResults(data.quote);
+      });
+  };
+  useEffect(getSearchResults, [searchValue]);
   useEffect(getQuote, []);
 
   return (
@@ -26,6 +42,10 @@ function App() {
       <div className="displayarea">
         <Quotetext text={quote} />
         <Quoteauthor name={author} />
+      </div>
+      <Search search={search} />
+      <div className="searchresult">
+        <p>{searchResults}</p>
       </div>
     </div>
   );
