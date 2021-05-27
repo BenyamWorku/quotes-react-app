@@ -10,9 +10,10 @@ function App() {
   const [author, setAuthor] = useState("Anonymous");
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState("");
-  const search = (searchVal, event) => {
+  const search = (searchVal) => {
     setSearchValue(searchVal);
-    event.preventDefault();
+    console.log(searchVal);
+    // event.preventDefault();
   };
   const getQuote = () => {
     fetch(`https://benyam-quote-server.glitch.me/quotes/random`)

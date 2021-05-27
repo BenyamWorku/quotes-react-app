@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import SearchButton from "./SearchButton.js";
-export default function Search() {
+export default function Search(props) {
   const [searchInput, setSearchInput] = useState("");
-
+// props.search
   const handleSearchInput = (event) => {
     setSearchInput(event.target.value);
+    props.search(event.target.value);
   };
   return (
     <div>
@@ -16,7 +17,8 @@ export default function Search() {
         placeholder="Quote string"
         onChange={handleSearchInput}
       />
-      <SearchButton />
+      
+      <SearchButton  />
     </div>
   );
 }
