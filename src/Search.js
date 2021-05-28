@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SearchButton from "./SearchButton.js";
+
 export default function Search(props) {
   const [searchInput, setSearchInput] = useState("");
 // props.search
@@ -18,7 +18,7 @@ export default function Search(props) {
         onChange={handleSearchInput}
       />
       
-      <SearchButton  />
+      
     </div>
   );
 }

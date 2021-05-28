@@ -37,8 +37,11 @@
   }
 }
 h1 {
-width:80%;
-background-color:grey;
-color:black;
-margin:0 auto;
+  width: 80%;
+  background-color: grey;
+  color: black;
+  margin: 0 auto;
+}
+searchresult {
+  display: block;
 }
